@@ -40,7 +40,7 @@ func run() error {
 
 	sdl.PumpEvents()
 	// Draw Title Flappy Gopher
-	if err := drawTitle(r); err != nil {
+	if err := drawTitle(r, "Flappy Gopher"); err != nil {
 		return fmt.Errorf("Could not draw title: %v", err)
 	}
 	time.Sleep(1 * time.Second)
@@ -66,7 +66,7 @@ func run() error {
 
 }
 
-func drawTitle(r *sdl.Renderer) error {
+func drawTitle(r *sdl.Renderer, text string) error {
 	r.Clear()
 
 	// Open font file
@@ -78,7 +78,7 @@ func drawTitle(r *sdl.Renderer) error {
 
 	// Render font
 	color := sdl.Color{R: 255, G: 100, B: 0, A: 255}
-	surface, err := fontFile.RenderUTF8Solid("Flappy Gopher", color)
+	surface, err := fontFile.RenderUTF8Solid(text, color)
 	if err != nil {
 		return fmt.Errorf("Could not render font: %v", err)
 	}
